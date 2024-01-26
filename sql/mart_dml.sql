@@ -19,3 +19,13 @@ select	year as "tahun",
 from fact_transaction
 group by "tahun","zone"
 order by "tahun" asc;
+
+--mart_zone_day
+delete from mart_zone_day;
+insert into mart_zone_day
+select	transaction_date as "tanggal",
+		zone_name as "zone",
+		sum(line_item_amount) as "penjualan"
+from fact_transaction
+group by "tanggal","zone"
+order by "tanggal" asc;
